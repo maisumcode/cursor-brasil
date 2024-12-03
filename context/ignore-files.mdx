@@ -1,0 +1,32 @@
+---
+title: Ignorar Arquivos
+---
+
+Para otimizar o uso dos recursos do Cursor, como a [indexação da base de código](/context/codebase-indexing), você pode usar um arquivo `.cursorignore` na raiz do seu projeto. Este arquivo funciona de maneira semelhante ao `.gitignore`, permitindo que você especifique quais arquivos ou diretórios devem ser ignorados durante a indexação.
+
+## Como Funciona
+
+O `.cursorignore` respeita as regras definidas no `.gitignore`. Se você já tiver um `.gitignore`, os arquivos listados nele serão ignorados por padrão. No entanto, você pode adicionar regras adicionais ao `.cursorignore` para ignorar arquivos específicos que não estão no `.gitignore`.
+
+### Exemplo de Arquivo `.cursorignore`
+
+Aqui está um exemplo de como você pode configurar seu arquivo `.cursorignore`:
+
+```
+# Ignorar todos os arquivos no diretório `dist`
+dist/
+
+# Ignorar todos os arquivos `.log`
+*.log
+
+# Ignorar arquivo específico `config.json`
+config.json
+
+# Ignorar diretórios de build
+build/
+out/
+
+# Ignorar arquivos temporários
+*.tmp
+*.temp
+```

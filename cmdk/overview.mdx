@@ -1,0 +1,45 @@
+---
+title: "Visão Geral"
+---
+
+Cmd K, também conhecido como "Ctrl K" no Windows/Linux, permite que você gere novo código ou edite código existente na janela do editor.
+
+<Frame>
+  <img src="/images/cmdk/regular.png" />
+</Frame>
+
+### Barras de Prompt
+
+No Cursor, chamamos a barra que aparece quando você pressiona `Ctrl/Cmd K` de "Barra de Prompt". Ela funciona de forma semelhante à caixa de entrada de IA para chat, na qual você pode digitar normalmente ou usar [símbolos @](context/@-symbols) para referenciar outro contexto.
+
+### Geração Inline
+
+Se nenhum código estiver selecionado quando você pressionar `Ctrl/Cmd K`, o Cursor gerará um novo código com base no prompt que você digitar na barra de prompt.
+
+<Frame>
+  <img src="/images/cmdk/generate.png" />
+</Frame>
+
+### Edições Inline
+
+Para edições no local, você pode simplesmente selecionar o código que deseja editar e digitar na barra de prompt.
+
+<Frame>
+  <img src="/images/cmdk/edit.png" />
+</Frame>
+
+### Instruções de Acompanhamento
+
+Após cada geração, você pode refinar ainda mais o prompt adicionando mais instruções à barra de prompt e pressionando `Enter` para que a IA regenere com base nas suas instruções de acompanhamento.
+
+### Contexto Padrão
+
+Por padrão, o Cursor tentará encontrar diferentes tipos de informações úteis para melhorar a geração de código, além dos [símbolos @](/context/@-symbols/@-files) manuais que você incluir.
+
+O contexto adicional pode incluir arquivos relacionados, arquivos visualizados recentemente e mais. Após a coleta, o Cursor classifica os itens de contexto por relevância para sua edição/geração e mantém os principais itens em contexto para o modelo de linguagem grande.
+
+### Pergunta Rápida
+
+Se você pressionar `Option/Alt Enter` enquanto estiver na barra de prompt, o Cursor responderá a quaisquer perguntas que você tenha sobre a seleção e o contexto que você anexou.
+
+O conteúdo desta conversa pode ser usado em gerações de acompanhamento, então você pode simplesmente digitar "faça isso" depois que o Cursor apresentar uma resposta para gerar o código após uma pergunta rápida.

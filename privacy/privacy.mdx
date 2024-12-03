@@ -1,0 +1,37 @@
+---
+title: FAQ de Privacidade
+---
+
+### O que é o Modo de Privacidade?
+
+O `Modo de Privacidade` é uma configuração que garante que nenhum dos seus códigos seja armazenado por nós ou por terceiros, exceto pela OpenAI, que mantém os prompts que enviamos para eles por 30 dias para confiança e segurança, a menos que você esteja no plano empresarial. Este modo é ideal para desenvolvedores que desejam proteger a confidencialidade de seus projetos.
+
+<Frame>
+  <img src="/images/get-started/privacy-mode.png" alt="Modo de Privacidade" />
+</Frame>
+
+### Como Ativar o Modo de Privacidade
+
+Você pode habilitar o `Modo de Privacidade` em `Configurações do Cursor` > `Geral` > `Modo de Privacidade`. Ao ativar esta opção, o Cursor ajustará automaticamente suas configurações para garantir que nenhum dado sensível seja armazenado.
+
+### O que Acontece com Meus Dados?
+
+- **Armazenamento de Código**: Quando o Modo de Privacidade está ativado, nenhum código é armazenado em nossos servidores. Isso significa que todo o processamento é feito localmente, e apenas os dados necessários para a operação imediata são utilizados.
+- **Telemetria**: Dados de telemetria, que são usados para melhorar o Cursor, não são coletados quando o Modo de Privacidade está ativado.
+- **OpenAI**: Se você não estiver no plano empresarial, a OpenAI ainda pode manter os prompts por 30 dias para confiança e segurança.
+
+### Perguntas Frequentes
+
+#### As solicitações são sempre roteadas pelo backend do Cursor?
+
+Sim, mesmo que você use sua chave de API, suas solicitações ainda passarão pelo nosso backend. É lá que fazemos a construção final do prompt. No entanto, com o Modo de Privacidade ativado, garantimos que nenhum dado sensível seja armazenado.
+
+#### Indexar a base de código requer armazenar código?
+
+Não, a indexação da base de código não requer o armazenamento de código. O Cursor faz o upload da sua base de código em pequenos pedaços para calcular embeddings, mas todo o código em texto simples deixa de existir após a vida útil da solicitação. Os embeddings e metadados sobre sua base de código (hashes, nomes de arquivos) são armazenados em nosso banco de dados, mas nenhum dos seus códigos é.
+
+### Dicas para Proteger sua Privacidade
+
+- **Revisar Configurações**: Regularmente revise suas configurações de privacidade no Cursor para garantir que estão alinhadas com suas necessidades.
+- **Usar Chaves de API Personalizadas**: Considere usar suas próprias chaves de API para maior controle sobre como seus dados são processados.
+- **Monitorar Acessos**: Fique atento a qualquer acesso não autorizado e reporte imediatamente qualquer atividade suspeita.

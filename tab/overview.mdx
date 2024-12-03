@@ -1,0 +1,44 @@
+---
+title: "Visão Geral"
+---
+
+Cursor Tab é nosso recurso nativo de autocompletar. É um Copilot mais poderoso que sugere diffs inteiros com uma memória especialmente boa.
+
+<Frame>
+  <video src="/images/cpp/cpp-full-video.mp4" autoPlay loop muted playsInline />
+</Frame>
+
+Impulsionado por um modelo personalizado, o Cursor Tab pode:
+
+- Sugerir edições ao redor do seu cursor, não apenas inserções de código adicional.
+- Modificar várias linhas de uma vez.
+- Fazer sugestões com base em suas alterações recentes e erros de lint.
+
+Usuários gratuitos recebem 2000 sugestões sem custo. Planos Pro e Business recebem sugestões ilimitadas.
+
+### Interface do Usuário
+
+Quando o Cursor está apenas adicionando texto adicional, as conclusões aparecerão como texto cinza. Se uma sugestão modificar o código existente,
+ela aparecerá como um popup de diff à direita da sua linha atual.
+
+<Frame className="flex items-stretch justify-center">
+  <img
+    src="/images/cpp/ghost-text-example.png"
+    className="h-full object-cover"
+  />
+  <img
+    src="/images/cpp/preview-box-example.png"
+    className="h-full object-cover"
+  />
+</Frame>
+
+Você pode aceitar uma sugestão pressionando `Tab`, ou rejeitá-la pressionando `Esc`. Para aceitar parcialmente uma sugestão palavra por palavra, pressione `Ctrl/⌘ →`.
+Para rejeitar uma sugestão, continue digitando ou use `Escape` para cancelar/ocultar a sugestão.
+
+A cada pressionamento de tecla ou movimento do cursor, o Cursor tentará fazer uma sugestão com base em suas alterações recentes. No entanto, o Cursor nem sempre mostrará uma sugestão; às vezes o modelo previu que não há mudança a ser feita.
+
+O Cursor pode fazer alterações de uma linha acima até duas linhas abaixo da sua linha atual.
+
+### Alternando
+
+Para ligar ou desligar o recurso, passe o mouse sobre o ícone "Cursor Tab" na barra de status no canto inferior direito do aplicativo.

@@ -1,0 +1,61 @@
+---
+title: Guia de Solução de Problemas
+---
+
+Este guia fornece informações úteis para solucionar problemas comuns que você pode encontrar ao usar o Cursor. Siga as etapas abaixo para identificar e resolver problemas de forma eficaz.
+
+## Informações Úteis para Solução de Problemas
+
+Ao relatar um problema, é importante fornecer o máximo de informações possível para ajudar na resolução. Aqui estão algumas informações que são frequentemente úteis:
+
+1. **Captura de Tela do Problema**: Inclua uma captura de tela que mostre claramente o problema. Certifique-se de remover qualquer informação sensível antes de compartilhar.
+
+2. **Passos para Reproduzir**: Descreva os passos exatos que você seguiu para reproduzir o problema. Isso ajuda a equipe de suporte a entender o contexto e a replicar o problema.
+
+3. **Informações do Sistema**: Inclua detalhes sobre seu sistema operacional, versão do Cursor e qualquer outra informação relevante. Você pode encontrar essas informações em:
+
+   - `Cursor` > `Ajuda` > `Sobre`
+
+4. **Uso de VPN ou Zscaler**: Informe se você está usando uma VPN ou Zscaler, pois isso pode afetar a conectividade e o desempenho.
+
+5. **Erros no Console das Ferramentas de Desenvolvedor**: Verifique se há erros no console das ferramentas de desenvolvedor. Para acessar, vá para:
+
+   - `Cursor` > `Ajuda` > `Alternar Ferramentas de Desenvolvedor`
+   - Clique em `Console` e veja se há erros relacionados.
+
+6. **Logs**: Inclua logs relevantes para ajudar na análise do problema. No Windows, você pode encontrar logs aqui:
+
+   ```txt
+   C:\Users\<seu-nome-de-usuário>\AppData\Roaming\Cursor\logs
+   ```
+
+   Para abrir a pasta de logs, use:
+
+   - `Ctrl` + `Shift` + `P` (para abrir o painel de comandos no Cursor)
+   - Digite e selecione `Developer: Open Logs Folder`
+
+   Você também pode visualizar logs em `Cursor` > `Terminal` > `Saída` e então clicar no menu suspenso e selecionar `Janela` ou uma das outras opções específicas do Cursor, como `Cursor Tab` ou `Cursor Indexing & Retrieval`.
+
+## Dicas para Evitar Problemas
+
+- **Manter o Cursor Atualizado**: Certifique-se de que você está usando a versão mais recente do Cursor, pois atualizações frequentemente incluem correções de bugs e melhorias de desempenho.
+
+- **Revisar Configurações**: Regularmente revise suas configurações no Cursor para garantir que estão otimizadas para seu ambiente de desenvolvimento.
+
+- **Monitorar o Desempenho**: Fique atento a qualquer lentidão ou comportamento inesperado e tome medidas proativas para resolver problemas antes que se tornem críticos.
+
+- **Usar Recursos de Diagnóstico**: Utilize os recursos de diagnóstico do Cursor, como logs e ferramentas de desenvolvedor, para identificar e resolver problemas rapidamente.
+
+## Exemplos de Problemas Comuns e Soluções
+
+### Problema: O Cursor não está atualizando
+
+**Solução**: Verifique se a atualização foi disponibilizada para você. Se a atualização for muito recente, pode ser que ainda não tenha sido liberada para todos os usuários. Você pode baixar o Cursor novamente em nossa [página inicial](https://cursor.com/).
+
+### Problema: Erros ao conectar ao SSH Remoto
+
+**Solução**: Atualmente, não oferecemos suporte para SSH em máquinas Windows. Se você não estiver usando uma máquina Windows, por favor, reporte seu problema para nós no [fórum](https://forum.cursor.com/).
+
+### Problema: Cursor Tab e Cmd K não funcionam atrás do meu proxy corporativo
+
+**Solução**: Defina `"cursor.general.disableHttp2": true` nas configurações (`Cmd/Ctrl + ,` e depois procurar por `http2`) para desativar o uso de HTTP/2, que pode ser bloqueado por alguns proxies corporativos.

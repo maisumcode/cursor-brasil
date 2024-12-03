@@ -1,0 +1,89 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Cursor",
+  "logo": {
+    "dark": "/images/logo/app-logo.svg",
+    "light": "/images/logo/app-logo.svg"
+  },
+  "favicon": "/images/logo/favicon.svg",
+  "colors": {
+    "primary": "#0C0C15",
+    "light": "#0C0C15",
+    "dark": "#0C0C15",
+    "background": {
+      "dark": "#0C0C15",
+      "light": "#ffffff"
+    }
+  },
+  "metadata": {
+    "og:site_name": "Cursor",
+    "og:title": "Cursor - Construa Software Mais Rápido"
+  },
+
+  "navigation": [
+    {
+      "group": "Introdução",
+      "pages": ["get-started/what-is-cursor"]
+    },
+    {
+      "group": "advanced",
+      "pages": [
+        "advanced/ai-review",
+        "advanced/api-keys",
+        "advanced/models",
+        "advanced/shadow-workspace"
+      ]
+    },
+    {
+      "group": "CMDK",
+      "pages": ["cmdk/overview", "cmdk/terminal-cmdk"]
+    },
+    {
+      "group": "Miscellaneous",
+      "pages": [
+        "miscellaneous/auto-terminal-debug",
+        "miscellaneous/keyboard-shortcuts"
+      ]
+    },
+    {
+      "group": "tab",
+      "pages": ["tab/overview", "tab/advanced-features", "tab/from-gh-copilot"]
+    },
+    {
+      "group": "privacy",
+      "pages": ["privacy/privacy"]
+    },
+
+    {
+      "group": "context",
+      "pages": [
+        "context/codebase-indexing",
+        "context/ignore-files",
+        "context/rules-for-ai",
+        "context/@-symbols/basic",
+        "context/@-symbols/@-chat",
+        "context/@-symbols/@-code",
+        "context/@-symbols/@-codebase",
+        "context/@-symbols/@-definitions",
+        "context/@-symbols/@-docs",
+        "context/@-symbols/@-files",
+        "context/@-symbols/@-folders",
+        "context/@-symbols/@-git",
+        "context/@-symbols/@-link",
+        "context/@-symbols/@-web"
+      ]
+    },
+
+    {
+      "group": "troubleshooting",
+      "pages": [
+        "troubleshooting/common-issues",
+        "troubleshooting/troubleshooting-guide"
+      ]
+    }
+  ],
+  "modeToggle": {
+    "default": "dark",
+    "isHidden": false
+  }
+}

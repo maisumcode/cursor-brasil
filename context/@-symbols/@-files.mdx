@@ -1,0 +1,42 @@
+---
+title: "@Files"
+---
+
+### `@Files`
+
+O recurso `@Files` permite que você referencie arquivos inteiros nas caixas de entrada de IA, como no Cursor Chat e Cmd K. Isso é especialmente útil quando você precisa fornecer contexto completo de um arquivo para a IA.
+
+<Frame>
+  <img src="/images/context/@file.png" />
+</Frame>
+
+### Como Usar
+
+Para usar `@Files`, basta digitar `@` seguido pelo nome do arquivo que você deseja referenciar. O Cursor mostrará uma pré-visualização do caminho do arquivo para garantir que você está selecionando o arquivo correto. Isso é particularmente útil quando você tem vários arquivos com o mesmo nome em pastas diferentes.
+
+#### Exemplos de Uso
+
+- **Revisão de Código**: Use `@Files` para incluir o arquivo completo em uma revisão de código, permitindo que a IA analise o contexto completo.
+- **Geração de Documentação**: Referencie arquivos inteiros ao gerar documentação para garantir que todos os detalhes relevantes sejam incluídos.
+- **Depuração**: Inclua arquivos inteiros ao depurar problemas complexos para que a IA possa entender o contexto completo.
+
+### Referências de Arquivos Longos no Chat
+
+No Chat do Cursor, se o conteúdo de um arquivo for muito longo, o Cursor dividirá o arquivo em partes menores e as reclassificará com base na relevância para a consulta. Isso garante que apenas as partes mais relevantes do arquivo sejam usadas como contexto.
+
+<Frame>
+  <img src="/images/context/@file-long-file.png" />
+</Frame>
+
+### Estratégia de Fragmentação Cmd K
+
+Para Cmd K, o Cursor usa as referências de arquivo de maneira diferente com base no comprimento do conteúdo:
+
+- **Auto**: Escolhe automaticamente uma das três estratégias de leitura com base no tamanho do arquivo.
+- **Arquivo Completo**: O arquivo inteiro é usado como contexto.
+- **Esboço**: O Cursor analisa o esboço do arquivo e usa as informações como contexto.
+- **Fragmentos**: O Cursor divide o arquivo em partes menores e escolhe a mais relevante.
+
+<Frame>
+  <img src="/images/context/@file-cmdk.png" />
+</Frame>

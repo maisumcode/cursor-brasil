@@ -1,0 +1,73 @@
+---
+title: Chaves de API Personalizadas
+---
+
+### O que são Chaves de API Personalizadas?
+
+As chaves de API personalizadas permitem que você integre suas próprias credenciais de API no Cursor, permitindo o uso de modelos de IA de terceiros, como OpenAI, Anthropic e Google, diretamente no seu fluxo de trabalho. Isso oferece maior flexibilidade e controle sobre como você utiliza os recursos de IA.
+
+<Frame>
+  <img src="/images/misc/openai-api.png" />
+</Frame>
+
+## Como Configurar Chaves de API
+
+### Chaves de API da OpenAI
+
+Para usar sua própria chave de API da OpenAI, siga estas etapas:
+
+1. **Obtenha sua Chave de API**: Visite [OpenAI API Keys](https://platform.openai.com/account/api-keys) para gerar sua chave.
+2. **Configuração no Cursor**: Vá para `Configurações do Cursor` > `Modelos` > `Chave de API da OpenAI` e insira sua chave de API.
+3. **Verificação**: Clique no botão "Verificar" para validar sua chave. Uma vez validada, sua chave de API da OpenAI será habilitada.
+
+### Chaves de API da Anthropic
+
+Semelhante à OpenAI, você pode definir sua própria chave de API da Anthropic para usar modelos baseados em Claude:
+
+1. **Obtenha sua Chave de API**: Siga as instruções no site da Anthropic para gerar sua chave.
+2. **Configuração no Cursor**: Insira a chave em `Configurações do Cursor` > `Modelos` > `Chave de API da Anthropic`.
+
+<Frame>
+  <img src="/images/misc/anthropic-api.png" />
+</Frame>
+
+### Chaves de API do Google
+
+Para usar modelos do Google, como `gemini-1.5-flash-500k`, configure sua chave de API do Google:
+
+1. **Obtenha sua Chave de API**: Acesse o console do Google Cloud para gerar sua chave.
+2. **Configuração no Cursor**: Insira a chave em `Configurações do Cursor` > `Modelos` > `Chave de API do Google`.
+
+<Frame>
+  <img src="/images/misc/google-api.png" />
+</Frame>
+
+### Integração com Azure
+
+Para usar modelos do Azure OpenAI, configure sua chave de API do Azure:
+
+1. **Obtenha sua Chave de API**: Acesse o portal do Azure para gerar sua chave.
+2. **Configuração no Cursor**: Insira a chave em `Configurações do Cursor` > `Modelos` > `Chave de API do Azure`.
+
+<Frame>
+  <img src="/images/misc/azure-api.png" />
+</Frame>
+
+## Segurança e Privacidade
+
+### Armazenamento de Chaves
+
+- **Local**: As chaves de API não são armazenadas permanentemente no Cursor. Elas são enviadas para o nosso servidor com cada solicitação para construção do prompt.
+- **Confidencialidade**: Certifique-se de que suas chaves de API estão seguras e não são compartilhadas inadvertidamente.
+
+### Dicas para Uso Seguro
+
+- **Revogar Chaves Não Utilizadas**: Regularmente revogue chaves de API que não estão mais em uso para minimizar riscos de segurança.
+- **Monitorar Uso**: Acompanhe o uso de suas chaves de API para detectar qualquer atividade suspeita.
+- **Limitar Permissões**: Configure suas chaves de API com permissões mínimas necessárias para suas operações.
+
+## Exemplos de Uso
+
+- **Geração de Texto**: Use chaves de API da OpenAI para gerar texto de alta qualidade em seus projetos.
+- **Análise de Dados**: Utilize modelos do Google para análise de grandes volumes de dados.
+- **Integração de Serviços**: Combine diferentes chaves de API para integrar múltiplos serviços de IA em seu fluxo de trabalho.

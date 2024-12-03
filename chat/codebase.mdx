@@ -1,0 +1,30 @@
+---
+title: "Com Base de Código"
+---
+
+### Chat de Base de Código Padrão
+
+Se uma base de código não estiver [indexada](/context/codebase-indexing), o Cursor Chat tentará primeiro calcular algumas consultas de pesquisa para
+serem usadas para pesquisar em toda a sua base de código. Para melhor precisão, é recomendado usar a [pesquisa de embeddings](#embeddings-search).
+
+<Frame>
+  <img src="/images/chat/no-embeddings.png" />
+</Frame>
+
+### Pesquisa de Embeddings
+
+Com a [indexação da base de código](/context/codebase-indexing), o Cursor Chat pode gerar respostas precisas com base na sua base de código.
+
+Ao pressionar `Ctrl/⌘ + Enter` após digitar uma mensagem, o Cursor Chat examina sua base de código indexada para encontrar trechos de código relevantes. Isso é geralmente
+bom para incluir rapidamente trechos de código no contexto da conversa. Para mais controle sobre a pesquisa na base de código e melhor precisão,
+você pode usar `@codebase`.
+
+<Frame>
+  <img src="/images/chat/embeddings.png" />
+</Frame>
+
+### Pesquisa Avançada na Base de Código
+
+O chat de base de código do Cursor realiza uma pesquisa mais detalhada quando `@Codebase` é usado.
+
+Veja mais sobre `@Codebase` [aqui](/context/@-symbols/@-codebase).
