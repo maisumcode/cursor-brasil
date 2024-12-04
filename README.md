@@ -1,18 +1,55 @@
-# Documentação para Pragramar Mini apps usando IA
+# Documentação para Programar Mini apps usando IA
 
-Este repositório contém o código-fonte para a [Documentação do Cursor](https://docs.cursor.com).
+Este repositório contém o código-fonte para a [Documentação do Cursor](https://docs.cursor.com) e também inclui um mini aplicativo de chat usando a API do Google Gemini.
+
+## Mini Chat com Gemini AI
+
+### Sobre o Chat
+
+O projeto inclui um chat interativo em português usando a API do Gemini. Para usar:
+
+1. Certifique-se de ter o Python instalado no seu computador
+
+2. Configure o arquivo `.env` com sua chave API do Gemini:
+
+```
+GEMINI_API_KEY="sua-chave-api-aqui"
+```
+
+3. Execute o chat usando:
+
+```bash
+./p
+```
+
+4. Digite suas perguntas e receba respostas em português. Digite "sair" para encerrar.
+
+### Requisitos
+
+- Python 3.x (necessário ter instalado)
+- Bibliotecas: requests, python-dotenv
+- Chave API do Google Gemini
+
+### Instalação
+
+```bash
+pip install requests python-dotenv
+chmod +x p
+```
+
+## Documentação do Cursor
 
 Por favor, abra Pull Requests para sugerir mudanças úteis!
 
 ### Desenvolvimento
 
-Instale o [Mintlify CLI](https://www.npmjs.com/package/mintlify) para visualizar as mudanças na documentação localmente. Para instalar, use o seguinte comando
+Instale o [Mintlify CLI](https://www.npmjs.com/package/mintlify) para visualizar as mudanças na documentação localmente. Para instalar, use o seguinte comando:
 
 ```
 npm i -g mintlify
 ```
 
-Execute o seguinte comando na raiz da sua documentação (onde está o mint.json)
+Execute o seguinte comando na raiz da sua documentação (onde está o mint.json):
 
 ```
 mintlify dev

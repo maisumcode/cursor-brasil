@@ -10,6 +10,10 @@ def consultar_gemini(pergunta):
     url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-8b:generateContent"
     api_key = os.getenv('GEMINI_API_KEY')
     
+    # Verifica se a chave API foi carregada
+    if not api_key:
+        return "Erro: Chave API não encontrada no arquivo .env"
+    
     headers = {
         "Content-Type": "application/json"
     }
