@@ -10,4 +10,4 @@ cd "$PROJECT_DIR"
 source .venv/bin/activate
 
 # Executa o script Python
-python p.py 
+python run.py 

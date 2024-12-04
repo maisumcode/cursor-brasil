@@ -5,6 +5,9 @@ __pycache__/
 .env
 .venv/
 venv/
+.pytest_cache/
+.coverage
+htmlcov/
 
 # Mac
 .DS_Store
@@ -22,3 +25,6 @@ venv/
 .zcompdump*
 .zshrc
 .zsh_sessions/
+
+# Pycache
+__pycache__/
