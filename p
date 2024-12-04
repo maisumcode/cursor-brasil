@@ -1,10 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-# Navega até o diretório onde está o script (ajuste o caminho conforme necessário)
-cd "$(dirname "$0")"
+import sys
+import os
+from pathlib import Path
 
-# Ativa o ambiente virtual se estiver usando um
-source .venv/bin/activate  
+# Obtém o diretório do script
+script_dir = Path(__file__).parent.resolve()
 
-# Executa o script Python
-python p.py 
+# Adiciona o diretório do script ao PYTHONPATH
+sys.path.append(str(script_dir))
+
+# Importa e executa o script principal
+from p import main
+
+if __name__ == "__main__":
+    main() 

@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from colors import Colors
 from datetime import datetime
+from bs4 import BeautifulSoup
 
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -75,7 +76,7 @@ def buscar_na_web(query):
     if not subscription_key or not endpoint:
         return "Erro: Chave de assinatura ou endpoint não configurados."
 
-    params = {'q': query, 'mkt': 'pt-BR'}
+    params = {'q': query}
     headers = {'Ocp-Apim-Subscription-Key': subscription_key}
 
     try:
@@ -91,7 +92,30 @@ def obter_data_hora_atual():
     data_hora_formatada = agora.strftime("%d/%m/%Y %H:%M:%S")
     return data_hora_formatada
 
-if __name__ == "__main__":
+def buscar_informacoes_bitcoin():
+    url = "https://api.coingecko.com/api/v3/simple/price"
+    params = {
+        'ids': 'bitcoin',
+        'vs_currencies': 'brl,usd',
+        'include_24hr_change': 'true'
+    }
+    
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        dados = response.json()
+        
+        preco_brl = dados['bitcoin']['brl']
+        preco_usd = dados['bitcoin']['usd']
+        variacao_24h = dados['bitcoin'].get('brl_24h_change', 0)
+        
+        return f"Bitcoin: R$ {preco_brl:,.2f} | US$ {preco_usd:,.2f} | 24h: {variacao_24h:.2f}%"
+    except requests.exceptions.RequestException as e:
+        return f"Erro de conexão: {e}"
+    except Exception as e:
+        return f"Erro ao processar dados: {e}"
+
+def main():
     print(f"{Colors.HEADER}=== Pesquisa Iniciada ==={Colors.END}")
     print(f"{Colors.GRAY}------------------------{Colors.END}")
     
@@ -105,13 +129,21 @@ if __name__ == "__main__":
             
         if "data" in pergunta.lower() or "hora" in pergunta.lower():
             resposta = obter_data_hora_atual()
+        elif "bitcoin" in pergunta.lower():
+            resposta = buscar_informacoes_bitcoin()
         else:
             resposta_gemini = consultar_gemini(pergunta, historico_conversa)
-            resposta_web = buscar_na_web(pergunta)
-            resposta = f"Resposta Gemini: {resposta_gemini}\nResultados da Web: {resposta_web}"
+            if "Erro" in resposta_gemini or "não tenho acesso à internet" in resposta_gemini.lower():
+                resposta_web = buscar_na_web(pergunta)
+                resposta = resposta_web
+            else:
+                resposta = resposta_gemini
         
         print(f"{Colors.CYAN}{resposta}{Colors.END}")
         
         if "Erro" not in resposta:
             historico_conversa.append(f"Usuário: {pergunta}")
             historico_conversa.append(f"Assistente: {resposta}")
+
+if __name__ == "__main__":
+    main()
