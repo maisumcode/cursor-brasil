@@ -1,8 +1,8 @@
-# Documentação para Programar Mini apps usando IA
+# Documentação do Cursor.com
 
-Este repositório contém o código-fonte para a [Documentação do Cursor](https://docs.cursor.com) e também inclui um mini aplicativo de chat usando a API do Google Gemini.
+Este repositório contém em português a documentação do Cursor.com e também inclui um mini aplicativo de chat no terminal usando a API do Google Gemini.
 
-## Mini Chat com Gemini AI (Pesquisador)
+## Pesquisar pelo terminal
 
 ### Sobre o Chat
 
@@ -42,9 +42,9 @@ pip install requests python-dotenv
 chmod +x p
 ```
 
-## Documentação do Cursor
+## PR para mudanças
 
-Por favor, abra Pull Requests para sugerir mudanças úteis!
+Por favor, abra Pull Requests para sugerir ajustes!
 
 ### Desenvolvimento
 
