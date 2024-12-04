@@ -23,62 +23,73 @@
   "navigation": [
     {
       "group": "Introdução",
-      "pages": ["get-started/what-is-cursor"]
+      "pages": ["00_get-started/what-is-cursor"]
     },
     {
-      "group": "advanced",
+      "group": "Chat",
       "pages": [
-        "advanced/ai-review",
-        "advanced/api-keys",
-        "advanced/models",
-        "advanced/shadow-workspace"
+        "01_chat/overview",
+        "01_chat/codebase",
+        "01_chat/customize",
+        "01_chat/apply"
       ]
     },
     {
       "group": "CMDK",
-      "pages": ["cmdk/overview", "cmdk/terminal-cmdk"]
+      "pages": ["02_cmdk/overview", "02_cmdk/terminal-cmdk"]
     },
     {
-      "group": "Miscellaneous",
+      "group": "Tab",
       "pages": [
-        "miscellaneous/auto-terminal-debug",
-        "miscellaneous/keyboard-shortcuts"
+        "03_tab/overview",
+        "03_tab/advanced-features",
+        "03_tab/from-gh-copilot"
       ]
     },
     {
-      "group": "tab",
-      "pages": ["tab/overview", "tab/advanced-features", "tab/from-gh-copilot"]
-    },
-    {
-      "group": "privacy",
-      "pages": ["privacy/privacy"]
-    },
-
-    {
-      "group": "context",
+      "group": "Contexto",
       "pages": [
-        "context/codebase-indexing",
-        "context/ignore-files",
-        "context/rules-for-ai",
-        "context/@-symbols/basic",
-        "context/@-symbols/@-chat",
-        "context/@-symbols/@-code",
-        "context/@-symbols/@-codebase",
-        "context/@-symbols/@-definitions",
-        "context/@-symbols/@-docs",
-        "context/@-symbols/@-files",
-        "context/@-symbols/@-folders",
-        "context/@-symbols/@-git",
-        "context/@-symbols/@-link",
-        "context/@-symbols/@-web"
+        "04_context/codebase-indexing",
+        "04_context/ignore-files",
+        "04_context/rules-for-ai",
+        "04_context/@-symbols/basic",
+        "04_context/@-symbols/@-chat",
+        "04_context/@-symbols/@-code",
+        "04_context/@-symbols/@-codebase",
+        "04_context/@-symbols/@-definitions",
+        "04_context/@-symbols/@-docs",
+        "04_context/@-symbols/@-files",
+        "04_context/@-symbols/@-folders",
+        "04_context/@-symbols/@-git",
+        "04_context/@-symbols/@-link",
+        "04_context/@-symbols/@-web"
       ]
     },
-
     {
-      "group": "troubleshooting",
+      "group": "Avançado",
       "pages": [
-        "troubleshooting/common-issues",
-        "troubleshooting/troubleshooting-guide"
+        "05_advanced/ai-review",
+        "05_advanced/api-keys",
+        "05_advanced/models",
+        "05_advanced/shadow-workspace"
+      ]
+    },
+    {
+      "group": "Privacidade",
+      "pages": ["06_privacy/privacy"]
+    },
+    {
+      "group": "Solução de Problemas",
+      "pages": [
+        "07_troubleshooting/common-issues",
+        "07_troubleshooting/troubleshooting-guide"
+      ]
+    },
+    {
+      "group": "Diversos",
+      "pages": [
+        "08_miscellaneous/auto-terminal-debug",
+        "08_miscellaneous/keyboard-shortcuts"
       ]
     }
   ],
