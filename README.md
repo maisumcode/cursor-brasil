@@ -2,11 +2,13 @@
 
 Este repositório contém o código-fonte para a [Documentação do Cursor](https://docs.cursor.com) e também inclui um mini aplicativo de chat usando a API do Google Gemini.
 
-## Mini Chat com Gemini AI
+## Mini Chat com Gemini AI (Pesquisador)
 
 ### Sobre o Chat
 
-O projeto inclui um chat interativo em português usando a API do Gemini. Para usar:
+O projeto inclui um chat interativo em português usando a API do Gemini para pesquisar informações. O nome do arquivo "p" vem de "pesquisar", pois este é um assistente focado em ajudar com pesquisas e consultas em português.
+
+Para usar:
 
 1. Certifique-se de ter o Python instalado no seu computador
 
@@ -16,7 +18,7 @@ O projeto inclui um chat interativo em português usando a API do Gemini. Para u
 GEMINI_API_KEY="sua-chave-api-aqui"
 ```
 
-3. Execute o chat usando:
+3. Execute o pesquisador usando:
 
 ```bash
 ./p
