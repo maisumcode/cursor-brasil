@@ -15,28 +15,54 @@ class HistoricoChat:
             os.makedirs(self.historico_dir)
             print(f"Diretório de histórico criado em: {self.historico_dir}")
 
+    def limpar_texto(self, texto):
+        """
+        Remove códigos de escape ANSI e outros caracteres especiais do texto.
+        """
+        import re
+        # Remove códigos de escape ANSI (incluindo cores)
+        ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+        texto = ansi_escape.sub('', texto)
+        
+        # Remove caracteres especiais ESC
+        texto = texto.replace('\x1b', '')
+        
+        # Remove códigos como [0;34m, [0m, etc
+        texto = re.sub(r'\[[0-9;]*m', '', texto)
+        
+        return texto.strip()
+
     def salvar_conversa(self, historico_conversa):
         """
-        Salva a conversa em um arquivo markdown.
+        Salva apenas a última interação da conversa em um arquivo MDX.
         """
-        if not historico_conversa:
+        if not historico_conversa or len(historico_conversa) < 2:
             return
             
         data_atual = datetime.now()
-        nome_arquivo = f"chat_{data_atual.strftime('%Y%m%d_%H%M%S')}.md"
+        nome_arquivo = f"chat_{data_atual.strftime('%Y%m%d_%H%M%S')}.mdx"
         caminho_arquivo = os.path.join(self.historico_dir, nome_arquivo)
         
+        # Pega apenas a última interação
+        ultima_pergunta = self.limpar_texto(historico_conversa[-2].replace("Usuário: ", ""))
+        ultima_resposta = self.limpar_texto(historico_conversa[-1].replace("Assistente: ", ""))
+        
         with open(caminho_arquivo, "w", encoding="utf-8") as f:
-            f.write(f"# Histórico de Chat - {data_atual.strftime('%d/%m/%Y %H:%M:%S')}\n\n")
+            # Frontmatter MDX
+            f.write("---\n")
+            f.write(f"title: 'Chat {data_atual.strftime('%d/%m/%Y')}'\n")
+            f.write(f"date: '{data_atual.strftime('%Y-%m-%d')}'\n")
+            f.write(f"time: '{data_atual.strftime('%H:%M:%S')}'\n")
+            f.write("type: 'chat'\n")
+            f.write("---\n\n")
             
-            for i in range(0, len(historico_conversa), 2):
-                if i + 1 < len(historico_conversa):
-                    pergunta = historico_conversa[i].replace("Usuário: ", "")
-                    resposta = historico_conversa[i + 1].replace("Assistente: ", "")
-                    
-                    f.write(f"## Pergunta\n{pergunta}\n\n")
-                    f.write(f"## Resposta\n{resposta}\n\n")
-                    f.write("---\n\n")
+            # Salva apenas a última interação
+            f.write(f"## Pergunta\n{ultima_pergunta}\n\n")
+            f.write(f"## Resposta\n{ultima_resposta}\n\n")
+            f.write("---\n\n")
+
+        print(f"\n{Colors.YELLOW}Histórico salvo em:{Colors.END}")
+        print(f"{Colors.CYAN}{caminho_arquivo}{Colors.END}\n")
 
     def carregar_ultimo_historico(self):
         """
@@ -46,12 +72,12 @@ class HistoricoChat:
             return "Nenhum histórico encontrado."
             
         arquivos = os.listdir(self.historico_dir)
-        arquivos_md = [f for f in arquivos if f.endswith('.md')]
+        arquivos_mdx = [f for f in arquivos if f.endswith('.mdx')]
         
-        if not arquivos_md:
+        if not arquivos_mdx:
             return "Nenhum histórico encontrado."
             
-        ultimo_arquivo = sorted(arquivos_md)[-1]
+        ultimo_arquivo = sorted(arquivos_mdx)[-1]
         
         with open(f"{self.historico_dir}/{ultimo_arquivo}", "r", encoding="utf-8") as f:
             conteudo = f.read()
