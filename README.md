@@ -1,72 +1,115 @@
-# Documentação do Cursor.com
+# Cursor Brasil
 
-Este repositório contém em português a documentação do Cursor.com e também inclui um mini aplicativo de chat no terminal usando a API do Google Gemini.
+Um chat interativo em português usando a API do Gemini para pesquisar informações. O nome do comando "p" vem de "pesquisar", pois este é um assistente focado em ajudar com pesquisas e consultas em português.
 
-## Pesquisar pelo terminal
+## Instalação e Configuração
 
-### Sobre o Chat
-
-O projeto inclui um chat interativo em português usando a API do Gemini para pesquisar informações. O nome do arquivo "p" vem de "pesquisar", pois este é um assistente focado em ajudar com pesquisas e consultas em português.
-
-Para usar:
-
-1. Certifique-se de ter o Python instalado no seu computador
-
-2. Configure o arquivo `.env` com sua chave API do Gemini:
-
-```
-GEMINI_API_KEY="sua-chave-api-aqui"
-```
-
-3. Execute o pesquisador usando:
+### 1. Clone o Repositório
 
 ```bash
-./p
+git clone https://github.com/seu-usuario/cursor-brasil.git
+cd cursor-brasil
 ```
 
-4. Como usar:
-   - Digite sua pergunta após o prompt ">"
-   - Digite apenas "s" para sair do programa
-   - O programa responderá suas perguntas em português
-
-### Requisitos
-
-- Python 3.x (necessário ter instalado)
-- Bibliotecas: requests, python-dotenv
-- Chave API do Google Gemini
-
-### Instalação
+### 2. Configure o Ambiente Virtual
 
 ```bash
-pip install requests python-dotenv
+# Crie o ambiente virtual
+python -m venv .venv
+
+# Ative o ambiente virtual
+# No macOS/Linux:
+source .venv/bin/activate
+# No Windows:
+.venv\Scripts\activate
+
+# Instale as dependências
+pip install -r requirements.txt
+```
+
+### 3. Configure as Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto e adicione suas chaves:
+
+```
+GEMINI_API_KEY=sua_chave_gemini
+BING_SEARCH_V7_SUBSCRIPTION_KEY=sua_chave_bing
+BING_SEARCH_V7_ENDPOINT=https://api.bing.microsoft.com
+```
+
+### 4. Torne o Script Executável
+
+```bash
 chmod +x p
 ```
 
-## PR para mudanças
+### 5. Configure o Comando Global
+
+#### No macOS/Linux:
+
+```bash
+# Crie um link simbólico para /usr/local/bin
+sudo ln -s "$(pwd)/p" /usr/local/bin/p
+
+# Se o diretório não existir, crie-o primeiro:
+sudo mkdir -p /usr/local/bin
+sudo chown $(whoami):admin /usr/local/bin
+```
+
+#### No Windows:
+
+Adicione o diretório do projeto ao PATH do sistema.
+
+## Como Usar
+
+Depois de configurado, você pode usar o comando `p` de qualquer lugar no terminal:
+
+```bash
+p
+```
+
+### Comandos Disponíveis:
+
+- Digite sua pergunta após o prompt ">"
+- Digite "s" ou "sair" para encerrar o programa
+- O programa responderá suas perguntas em português
+
+### Funcionalidades
+
+- Consulta ao Gemini para respostas inteligentes
+- Busca na web via Bing
+- Consulta de preços de Bitcoin
+- Formatação colorida das respostas
+- Consulta de data e hora atual
+
+### Requisitos
+
+- Python 3.x
+- Bibliotecas: requests, python-dotenv, beautifulsoup4
+- Chave API do Google Gemini
+- Chave API do Bing Search
+
+## Desenvolvimento
+
+### PR para mudanças
 
 Por favor, abra Pull Requests para sugerir ajustes!
 
-### Desenvolvimento
+### Documentação Local
 
-Instale o [Mintlify CLI](https://www.npmjs.com/package/mintlify) para visualizar as mudanças na documentação localmente. Para instalar, use o seguinte comando:
+Instale o [Mintlify CLI](https://www.npmjs.com/package/mintlify) para visualizar as mudanças na documentação localmente:
 
-```
+```bash
 npm i -g mintlify
 ```
 
-Execute o seguinte comando na raiz da sua documentação (onde está o mint.json):
+Execute na raiz da documentação:
 
-```
+```bash
 mintlify dev
 ```
 
 #### Solução de Problemas
 
-- Mintlify dev não está rodando - Execute `mintlify install` para reinstalar as dependências.
-- A página carrega como 404 - Certifique-se de que você está executando em uma pasta com `mint.json`
-
-# Nome do Seu Projeto
-
-## Pré-requisitos
-
-Para executar este projeto, você precisará instalar algumas dependências. Certifique-se de ter um ambiente virtual ativado e execute:
+- Mintlify dev não está rodando - Execute `mintlify install`
+- A página carrega como 404 - Verifique se está na pasta com `mint.json`

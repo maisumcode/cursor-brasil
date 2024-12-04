@@ -1,17 +1,13 @@
-#!/usr/bin/env python3
+#!/bin/bash
 
-import sys
-import os
-from pathlib import Path
+# Caminho absoluto para o diretório do projeto
+PROJECT_DIR="/Users/flow/Desktop/Desktop/cursor-brasil"
 
-# Obtém o diretório do script
-script_dir = Path(__file__).parent.resolve()
+# Navega até o diretório do projeto
+cd "$PROJECT_DIR"
 
-# Adiciona o diretório do script ao PYTHONPATH
-sys.path.append(str(script_dir))
+# Ativa o ambiente virtual
+source .venv/bin/activate
 
-# Importa e executa o script principal
-from p import main
-
-if __name__ == "__main__":
-    main() 
+# Executa o script Python
+python p.py 

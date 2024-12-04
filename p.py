@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from colors import Colors
 from datetime import datetime
 from bs4 import BeautifulSoup
+import re
 
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -27,11 +28,11 @@ def consultar_gemini(pergunta, historico=[]):
     
     # Adiciona a pergunta atual
     pergunta_formatada = f"""{conteudo}
-Você é um assistente especializado em informações atualizadas do Brasil.
+Você é um assistente inteligente e prestativo.
 IMPORTANTE: 
-- Busque informações oficiais e atualizadas
-- Foque em fontes como Banco Central e grandes portais de notícias
 - Seja direto e objetivo
+- Forneça informações precisas e atualizadas
+- Use fontes confiáveis quando necessário
 
 Pergunta: {pergunta}"""
     
@@ -115,19 +116,45 @@ def buscar_informacoes_bitcoin():
     except Exception as e:
         return f"Erro ao processar dados: {e}"
 
+def formatar_resposta(texto):
+    # Remove asteriscos
+    texto = texto.replace('*', '')
+    
+    # Separa o texto em linhas
+    linhas = texto.split('\n')
+    
+    # Formata o parágrafo inicial com uma cor diferente
+    if linhas and not ':' in linhas[0]:
+        linhas[0] = f"{Colors.BLUE}{linhas[0]}{Colors.END}"
+    
+    # Processa as linhas com dois pontos ou números
+    for i, linha in enumerate(linhas):
+        if ':' in linha:
+            # Separa o texto antes e depois dos dois pontos
+            antes, depois = linha.split(':', 1)
+            # Formata com cores diferentes
+            linhas[i] = f"{Colors.BLACK}{antes}:{Colors.END}{depois}"
+        # Verifica se a linha começa com número e ponto (ex: "1. ", "2. ")
+        elif linha.strip() and linha.strip()[0].isdigit() and '. ' in linha:
+            numero, resto = linha.split('. ', 1)
+            linhas[i] = f"{Colors.BLACK}{numero}. {Colors.END}{resto}"
+    
+    # Junta as linhas novamente
+    texto_formatado = '\n'.join(linhas)
+    return texto_formatado
+
 def main():
-    print(f"{Colors.HEADER}=== Pesquisa Iniciada ==={Colors.END}")
+    print(f"{Colors.GREEN}=== Pesquisa Iniciada ==={Colors.END}")
     print(f"{Colors.GRAY}------------------------{Colors.END}")
     
     historico_conversa = []
     
     while True:
         pergunta = input(f"{Colors.GREEN}> {Colors.END}")
-        if pergunta.lower() == "s":
-            print(f"{Colors.WARNING}Pesquisa Encerrada.{Colors.END}")
+        if pergunta.lower() in ["s", "sair"]:
             break
             
-        if "data" in pergunta.lower() or "hora" in pergunta.lower():
+        if pergunta.lower() in ["que horas são", "hora atual", "que hora é", "data atual", "que dia é hoje"]:
             resposta = obter_data_hora_atual()
         elif "bitcoin" in pergunta.lower():
             resposta = buscar_informacoes_bitcoin()
@@ -137,7 +164,7 @@ def main():
                 resposta_web = buscar_na_web(pergunta)
                 resposta = resposta_web
             else:
-                resposta = resposta_gemini
+                resposta = formatar_resposta(resposta_gemini)
         
         print(f"{Colors.CYAN}{resposta}{Colors.END}")
         
