@@ -28,3 +28,6 @@ htmlcov/
 
 # Pycache
 __pycache__/
+
+# Histórico
+historico/
