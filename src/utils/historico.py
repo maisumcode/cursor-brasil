@@ -4,13 +4,16 @@ from ..utils.colors import Colors
 
 class HistoricoChat:
     def __init__(self):
-        self.historico_dir = "historico"
+        # Pega o diretório raiz do projeto
+        self.projeto_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        self.historico_dir = os.path.join(self.projeto_dir, "historico")
         self.criar_diretorio()
 
     def criar_diretorio(self):
         """Cria o diretório de histórico se não existir."""
         if not os.path.exists(self.historico_dir):
             os.makedirs(self.historico_dir)
+            print(f"Diretório de histórico criado em: {self.historico_dir}")
 
     def salvar_conversa(self, historico_conversa):
         """
