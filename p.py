@@ -53,9 +53,13 @@ def consultar_gemini(pergunta):
         return f"Erro na requisição: {response.status_code} - {response.text}"
 
 if __name__ == "__main__":
+    print("=== Pesquisa Iniciada ===")
+    print("------------------------")
+    
     while True:
         pergunta = input("> ")
-        if pergunta.lower() == "sair":
+        if pergunta.lower() == "s":
+            print("Pesquisa Encerrada.")
             break
         resposta = consultar_gemini(pergunta)
         print(resposta)

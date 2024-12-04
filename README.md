@@ -24,7 +24,10 @@ GEMINI_API_KEY="sua-chave-api-aqui"
 ./p
 ```
 
-4. Digite suas perguntas e receba respostas em português. Digite "sair" para encerrar.
+4. Como usar:
+   - Digite sua pergunta após o prompt ">"
+   - Digite apenas "s" para sair do programa
+   - O programa responderá suas perguntas em português
 
 ### Requisitos
 
