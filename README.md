@@ -1,10 +1,15 @@
-# Cursor Brasil
+# Assistente de Chat Inteligente
 
-Um chat interativo em português usando a API do Gemini para pesquisar informações. O nome do comando "p" vem de "pesquisar", pois este é um assistente focado em ajudar com pesquisas e consultas em português.
+Sistema de chat interativo que utiliza múltiplas APIs para fornecer respostas precisas e atualizadas.
 
-## Instalação e Configuração
+## Requisitos
 
-### 1. Clone o Repositório
+- Python 3.x
+- Pacotes Python listados em `requirements.txt`
+
+## Configuração
+
+1. Instale as dependências:
 
 ```bash
 git clone https://github.com/seu-usuario/cursor-brasil.git
@@ -77,7 +82,10 @@ p
 ### Funcionalidades
 
 - Consulta ao Gemini para respostas inteligentes
-- Busca na web via Bing
+- Busca automática na web via Bing Search quando:
+  - O Gemini retorna erro
+  - O Gemini indica não ter acesso à informação
+  - O Gemini não pode fornecer a informação
 - Consulta de preços de Bitcoin
 - Formatação colorida das respostas
 - Consulta de data e hora atual
@@ -113,3 +121,18 @@ mintlify dev
 
 - Mintlify dev não está rodando - Execute `mintlify install`
 - A página carrega como 404 - Verifique se está na pasta com `mint.json`
+
+### Funcionalidades Especiais
+
+- **Consultas de Data/Hora**: Perguntas como "que horas são" ou "data atual"
+- **Preços de Bitcoin**: Consultas sobre preço atual do Bitcoin em BRL e USD
+- **Histórico de Conversa**: Mantém as últimas 5 mensagens para contexto
+- **Formatação Inteligente**: Respostas formatadas com cores para melhor legibilidade
+
+### Variáveis de Ambiente Necessárias
+
+```env
+GEMINI_API_KEY=sua_chave_gemini          # Chave API do Google Gemini
+BING_SEARCH_V7_SUBSCRIPTION_KEY=sua_chave # Chave API do Bing Search
+BING_SEARCH_V7_ENDPOINT=endpoint_bing     # Endpoint do Bing Search (ex: https://api.bing.microsoft.com)
+```

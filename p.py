@@ -6,6 +6,7 @@ from colors import Colors
 from datetime import datetime
 from bs4 import BeautifulSoup
 import re
+from tabulate import tabulate
 
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -77,14 +78,21 @@ def buscar_na_web(query):
     if not subscription_key or not endpoint:
         return "Erro: Chave de assinatura ou endpoint não configurados."
 
-    params = {'q': query}
+    params = {'q': query, 'mkt': 'pt-BR', 'count': 5}
     headers = {'Ocp-Apim-Subscription-Key': subscription_key}
 
     try:
         response = requests.get(endpoint, headers=headers, params=params)
         response.raise_for_status()
         resultados = response.json()
-        return resultados
+        
+        if 'webPages' in resultados and 'value' in resultados['webPages']:
+            texto_resposta = "Aqui está o que encontrei:\n\n"
+            for item in resultados['webPages']['value'][:3]:
+                texto_resposta += f"• {item['name']}\n"
+                texto_resposta += f"{item['snippet']}\n\n"
+            return texto_resposta
+        return "Não encontrei resultados relevantes para sua pesquisa."
     except requests.exceptions.RequestException as e:
         return f"Erro de conexão: {e}"
 
@@ -123,24 +131,84 @@ def formatar_resposta(texto):
     # Separa o texto em linhas
     linhas = texto.split('\n')
     
-    # Formata o parágrafo inicial com uma cor diferente
-    if linhas and not ':' in linhas[0]:
-        linhas[0] = f"{Colors.BLUE}{linhas[0]}{Colors.END}"
+    # Encontra a última tabela no texto
+    ultima_tabela_inicio = -1
+    ultima_tabela_fim = -1
+    i = 0
+    while i < len(linhas):
+        linha = linhas[i].strip()
+        if '|' in linha and not linha.startswith('>'):
+            inicio_tabela = i
+            # Encontra o fim da tabela atual
+            while i < len(linhas) and '|' in linhas[i]:
+                i += 1
+            fim_tabela = i
+            # Atualiza os índices da última tabela encontrada
+            ultima_tabela_inicio = inicio_tabela
+            ultima_tabela_fim = fim_tabela
+        i += 1
     
-    # Processa as linhas com dois pontos ou números
+    # Se encontrou uma tabela, processa apenas a última
+    if ultima_tabela_inicio >= 0:
+        tabela_linhas = []
+        headers = []
+        
+        # Processa apenas as linhas da última tabela
+        for i in range(ultima_tabela_inicio, ultima_tabela_fim):
+            linha_atual = linhas[i].strip()
+            if linha_atual and not linha_atual.startswith('>'):
+                colunas = [col.strip() for col in linha_atual.split('|') if col.strip()]
+                
+                if not headers and not all('-' in col for col in colunas):
+                    headers = colunas
+                elif not all('-' in col for col in colunas):
+                    tabela_linhas.append(colunas)
+        
+        # Formata a tabela usando tabulate
+        if headers and tabela_linhas:
+            tabela_formatada = tabulate(
+                tabela_linhas,
+                headers=headers,
+                tablefmt="pipe",
+                stralign="left",
+                colalign=["left"] * len(headers)
+            )
+            
+            # Aplica cores na tabela formatada
+            linhas_tabela = tabela_formatada.split('\n')
+            tabela_colorida = []
+            for j, linha_tab in enumerate(linhas_tabela):
+                if j == 0:  # Cabeçalho
+                    tabela_colorida.append(f"{Colors.GREEN}{Colors.BOLD}{linha_tab}{Colors.END}")
+                elif j == 1:  # Linha separadora
+                    tabela_colorida.append(f"{Colors.GRAY}{linha_tab}{Colors.END}")
+                else:  # Conteúdo
+                    partes = linha_tab.split('|')
+                    linha_colorida = []
+                    for k, parte in enumerate(partes):
+                        if k == 1:  # Primeira coluna (após pipe inicial)
+                            linha_colorida.append(f"{Colors.BLACK}{Colors.BOLD}{parte}{Colors.END}")
+                        else:
+                            linha_colorida.append(f"{Colors.CYAN}{parte}{Colors.END}")
+                    tabela_colorida.append('|'.join(linha_colorida))
+            
+            # Substitui a tabela original pela formatada
+            linhas[ultima_tabela_inicio:ultima_tabela_fim] = tabela_colorida
+    
+    # Processa as linhas não-tabela normalmente
     for i, linha in enumerate(linhas):
-        if ':' in linha:
-            # Separa o texto antes e depois dos dois pontos
-            antes, depois = linha.split(':', 1)
-            # Formata com cores diferentes
-            linhas[i] = f"{Colors.BLACK}{antes}:{Colors.END}{depois}"
-        # Verifica se a linha começa com número e ponto (ex: "1. ", "2. ")
-        elif linha.strip() and linha.strip()[0].isdigit() and '. ' in linha:
-            numero, resto = linha.split('. ', 1)
-            linhas[i] = f"{Colors.BLACK}{numero}. {Colors.END}{resto}"
+        if not '|' in linha:  # Processa apenas linhas que não são parte de tabela
+            if not ':' in linha and i == 0:
+                linhas[i] = f"{Colors.BLUE}{Colors.BOLD}{linha}{Colors.END}"
+            elif ':' in linha:
+                antes, depois = linha.split(':', 1)
+                linhas[i] = f"{Colors.BLACK}{Colors.BOLD}{antes}:{Colors.END}{Colors.CYAN}{depois}{Colors.END}"
+            elif linha.strip() and linha.strip()[0].isdigit() and '. ' in linha:
+                numero, resto = linha.split('. ', 1)
+                linhas[i] = f"{Colors.BLACK}{Colors.BOLD}{numero}. {Colors.END}{Colors.CYAN}{resto}{Colors.END}"
     
     # Junta as linhas novamente
-    texto_formatado = '\n'.join(linhas)
+    texto_formatado = '\n'.join(linha for linha in linhas if linha.strip())
     return texto_formatado
 
 def main():
@@ -160,9 +228,11 @@ def main():
             resposta = buscar_informacoes_bitcoin()
         else:
             resposta_gemini = consultar_gemini(pergunta, historico_conversa)
-            if "Erro" in resposta_gemini or "não tenho acesso à internet" in resposta_gemini.lower():
-                resposta_web = buscar_na_web(pergunta)
-                resposta = resposta_web
+            if ("Erro" in resposta_gemini or 
+                "não tenho acesso" in resposta_gemini.lower() or 
+                "não posso fornecer" in resposta_gemini.lower()):
+                print(f"{Colors.GRAY}Buscando informações na web...{Colors.END}")
+                resposta = buscar_na_web(pergunta)
             else:
                 resposta = formatar_resposta(resposta_gemini)
         
