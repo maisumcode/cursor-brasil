@@ -64,3 +64,9 @@ mintlify dev
 
 - Mintlify dev não está rodando - Execute `mintlify install` para reinstalar as dependências.
 - A página carrega como 404 - Certifique-se de que você está executando em uma pasta com `mint.json`
+
+# Nome do Seu Projeto
+
+## Pré-requisitos
+
+Para executar este projeto, você precisará instalar algumas dependências. Certifique-se de ter um ambiente virtual ativado e execute:

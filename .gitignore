@@ -1,2 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
 .env
-/.venv
+.venv/
+venv/
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VS Code/Cursor
+.vscode/
+.cursor/
+*.ans
+*.ansi
+
+# ZSH
+.zsh_history
+.zcompdump*
+.zshrc
+.zsh_sessions/

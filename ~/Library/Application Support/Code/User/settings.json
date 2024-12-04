@@ -1,0 +1,118 @@
+{
+    // ==========================================
+    // 🎨 THEME & INTERFACE
+    // ==========================================
+    "workbench.colorTheme": "Default Light+",
+    "window.zoomLevel": 2,
+    "workbench.colorCustomizations": {
+        // Terminal Style - Vermelho
+        "terminal.background": "#ffffff",
+        "terminal.foreground": "#ff4d4d",
+        "terminal.ansiRed": "#ff0000",
+        "terminal.ansiBrightRed": "#ff6666",
+        "terminal.ansiMagenta": "#ff4d4d",
+        "terminal.selectionBackground": "#ff000020",
+        "terminal.cursor.foreground": "#ff0000",
+        
+        // Interface Style - Claro
+        "editor.background": "#ffffff",
+        "sideBar.background": "#f3f3f3",
+        "activityBar.background": "#ffffff",
+        "statusBar.background": "#f3f3f3",
+        "titleBar.activeBackground": "#ffffff",
+        "activityBar.foreground": "#666666",
+        "statusBar.foreground": "#666666",
+        "titleBar.activeForeground": "#666666"
+    },
+
+    // ==========================================
+    // ⌨️ EDITOR BEHAVIOR & KEY HANDLING
+    // ==========================================
+    "editor.inlineSuggest.enabled": true,
+    "editor.accessibilitySupport": "on",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.macOptionClickForcesContextMenu": true,
+    "editor.autoClosingQuotes": "never",
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.quickSuggestions": {
+        "other": false,
+        "comments": false,
+        "strings": false
+    },
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "terminal.integrated.macOptionClickForcesContextMenu": true,
+    "terminal.integrated.copyOnSelection": false,
+    "terminal.integrated.rightClickBehavior": "default",
+    "terminal.integrated.enableColoredOutput": true,
+
+    // ==========================================
+    // 🤖 AI ASSISTANTS
+    // ==========================================
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false
+    },
+    "github.copilot.advanced": {},
+    "github.copilot.preferredAccount": "diegofornalha@gmail.com",
+    "tabnine.experimentalAutoImports": true,
+    "tabnine.cloudHost": "",
+
+    // ==========================================
+    // 📂 FILE MANAGEMENT
+    // ==========================================
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "files.associations": {
+        "*.cdc": "cadence",
+        "*.abi": "json",
+        "*.ans": "ansi",
+        "*.ansi": "ansi"
+    },
+    "workbench.editorAssociations": {
+        "*.bin": "hexEditor.hexedit"
+    },
+
+    // ==========================================
+    // 🔧 LANGUAGE SPECIFIC
+    // ==========================================
+    "svelte.enable-ts-plugin": true,
+    "solidity.telemetry": true,
+    "solidity.compileUsingLocalVersion": "",
+    "go.toolsManagement.autoUpdate": true,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[solidity]": {},
+
+    // ==========================================
+    // 🔄 GIT & VERSION CONTROL
+    // ==========================================
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+
+    // ==========================================
+    // 🎥 SCREENCAST
+    // ==========================================
+    "screencastMode.keyboardOptions": {
+        "showCommandGroups": true
+    },
+
+    // ==========================================
+    // 📚 SPELL CHECKER
+    // ==========================================
+    "cSpell.userWords": [],
+    "cSpell.language": "en,pt,pt-BR",
+
+    // ==========================================
+    // 🔒 SECURITY & SYSTEM
+    // ==========================================
+    "security.promptForLocalFileProtocolHandling": false
+}

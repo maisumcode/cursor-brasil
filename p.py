@@ -2,15 +2,16 @@ import requests
 import json
 import os
 from dotenv import load_dotenv
+from colors import Colors
+from datetime import datetime
 
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
 
-def consultar_gemini(pergunta):
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-8b:generateContent"
+def consultar_gemini(pergunta, historico=[]):
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
     api_key = os.getenv('GEMINI_API_KEY')
     
-    # Verifica se a chave API foi carregada
     if not api_key:
         return "Erro: Chave API não encontrada no arquivo .env"
     
@@ -18,29 +19,44 @@ def consultar_gemini(pergunta):
         "Content-Type": "application/json"
     }
     
-    pergunta_formatada = f"Responda em português do Brasil de forma direta e objetiva: {pergunta}"
+    # Formata o contexto histórico com a pergunta atual
+    conteudo = ""
+    for msg in historico[-5:]:  # Mantém apenas as últimas 5 mensagens do histórico
+        conteudo += msg + "\n"
+    
+    # Adiciona a pergunta atual
+    pergunta_formatada = f"""{conteudo}
+Você é um assistente especializado em informações atualizadas do Brasil.
+IMPORTANTE: 
+- Busque informações oficiais e atualizadas
+- Foque em fontes como Banco Central e grandes portais de notícias
+- Seja direto e objetivo
+
+Pergunta: {pergunta}"""
     
     data = {
-        "contents": [
-            {
-                "parts": [
-                    {
-                        "text": pergunta_formatada
-                    }
-                ]
-            }
-        ],
+        "contents": [{
+            "parts": [{
+                "text": pergunta_formatada
+            }]
+        }],
         "generationConfig": {
             "temperature": 0.7,
             "maxOutputTokens": 1024,
         }
     }
     
-    response = requests.post(
-        f"{url}?key={api_key}",
-        headers=headers,
-        json=data
-    )
+    if not pergunta.strip():
+        return "Erro: A pergunta não pode estar vazia."
+
+    try:
+        response = requests.post(
+            f"{url}?key={api_key}",
+            headers=headers,
+            json=data
+        )
+    except requests.exceptions.RequestException as e:
+        return f"Erro de conexão: {e}"
     
     if response.status_code == 200:
         resposta_json = response.json()
@@ -52,14 +68,50 @@ def consultar_gemini(pergunta):
     else:
         return f"Erro na requisição: {response.status_code} - {response.text}"
 
+def buscar_na_web(query):
+    subscription_key = os.getenv('BING_SEARCH_V7_SUBSCRIPTION_KEY')
+    endpoint = os.getenv('BING_SEARCH_V7_ENDPOINT') + "/bing/v7.0/search"
+    
+    if not subscription_key or not endpoint:
+        return "Erro: Chave de assinatura ou endpoint não configurados."
+
+    params = {'q': query, 'mkt': 'pt-BR'}
+    headers = {'Ocp-Apim-Subscription-Key': subscription_key}
+
+    try:
+        response = requests.get(endpoint, headers=headers, params=params)
+        response.raise_for_status()
+        resultados = response.json()
+        return resultados
+    except requests.exceptions.RequestException as e:
+        return f"Erro de conexão: {e}"
+
+def obter_data_hora_atual():
+    agora = datetime.now()
+    data_hora_formatada = agora.strftime("%d/%m/%Y %H:%M:%S")
+    return data_hora_formatada
+
 if __name__ == "__main__":
-    print("=== Pesquisa Iniciada ===")
-    print("------------------------")
+    print(f"{Colors.HEADER}=== Pesquisa Iniciada ==={Colors.END}")
+    print(f"{Colors.GRAY}------------------------{Colors.END}")
+    
+    historico_conversa = []
     
     while True:
-        pergunta = input("> ")
+        pergunta = input(f"{Colors.GREEN}> {Colors.END}")
         if pergunta.lower() == "s":
-            print("Pesquisa Encerrada.")
+            print(f"{Colors.WARNING}Pesquisa Encerrada.{Colors.END}")
             break
-        resposta = consultar_gemini(pergunta)
-        print(resposta)
+            
+        if "data" in pergunta.lower() or "hora" in pergunta.lower():
+            resposta = obter_data_hora_atual()
+        else:
+            resposta_gemini = consultar_gemini(pergunta, historico_conversa)
+            resposta_web = buscar_na_web(pergunta)
+            resposta = f"Resposta Gemini: {resposta_gemini}\nResultados da Web: {resposta_web}"
+        
+        print(f"{Colors.CYAN}{resposta}{Colors.END}")
+        
+        if "Erro" not in resposta:
+            historico_conversa.append(f"Usuário: {pergunta}")
+            historico_conversa.append(f"Assistente: {resposta}")
