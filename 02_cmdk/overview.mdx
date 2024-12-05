@@ -2,7 +2,10 @@
 title: "Visão Geral"
 ---
 
-Cmd K, também conhecido como "Ctrl K" no Windows/Linux, permite que você gere novo código ou edite código existente na janela do editor.
+Com `⌘ + K`, você tem duas opções: 
+
+1. Gera novos códigos 
+2. Edita códigos existentes
 
 <Frame>
   <img src="/images/cmdk/regular.png" />
@@ -10,11 +13,12 @@ Cmd K, também conhecido como "Ctrl K" no Windows/Linux, permite que você gere 
 
 ### Barras de Prompt
 
-No Cursor, chamamos a barra que aparece quando você pressiona `Ctrl/Cmd K` de "Barra de Prompt". Ela funciona de forma semelhante à caixa de entrada de IA para chat, na qual você pode digitar normalmente ou usar [símbolos @](context/@-symbols) para referenciar outro contexto.
+Ela funciona de forma semelhante à caixa de chat, na qual você pode digitar normalmente ou usar [símbolos @](context/@-symbols) para referenciar.
 
 ### Geração Inline
 
-Se nenhum código estiver selecionado quando você pressionar `Ctrl/Cmd K`, o Cursor gerará um novo código com base no prompt que você digitar na barra de prompt.
+Se nenhum código estiver selecionado quando você pressionar `⌘ + K`, o Cursor gerará um novo código com base no prompt que você digitar na barra de prompt.
+
 
 <Frame>
   <img src="/images/cmdk/generate.png" />
@@ -30,7 +34,7 @@ Para edições no local, você pode simplesmente selecionar o código que deseja
 
 ### Instruções de Acompanhamento
 
-Após cada geração, você pode refinar ainda mais o prompt adicionando mais instruções à barra de prompt e pressionando `Enter` para que a IA regenere com base nas suas instruções de acompanhamento.
+Após cada geração, você pode refinar ainda mais o prompt adicionando mais instruções à barra de prompt e pressionando `Enter`.
 
 ### Contexto Padrão
 
@@ -40,6 +44,7 @@ O contexto adicional pode incluir arquivos relacionados, arquivos visualizados r
 
 ### Pergunta Rápida
 
-Se você pressionar `Option/Alt Enter` enquanto estiver na barra de prompt, o Cursor responderá a quaisquer perguntas que você tenha sobre a seleção e o contexto que você anexou.
+Se você pressionar `Option + Enter` enquanto estiver na barra de prompt, o Cursor responderá a qualquer pergunta que você tenha sobre a seleção e o contexto que você anexou.
 
-O conteúdo desta conversa pode ser usado em gerações de acompanhamento, então você pode simplesmente digitar "faça isso" depois que o Cursor apresentar uma resposta para gerar o código após uma pergunta rápida.
+Após uma pergunta rápida o conteúdo desta conversa pode ser usado, então você pode simplesmente digitar "faça isso" depois que o Cursor apresentar uma resposta para gerar o código.
+ 
