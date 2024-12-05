@@ -4,20 +4,23 @@ title: "Com Base de Código"
 
 ### Chat de Base de Código Padrão
 
-Se uma base de código não estiver [indexada](/context/codebase-indexing), o Cursor Chat tentará primeiro calcular algumas consultas de pesquisa para
-serem usadas para pesquisar em toda a sua base de código. Para melhor precisão, é recomendado usar a [pesquisa de embeddings](#embeddings-search).
+Por padrão, suas pastas são indexadas no servidor do Cursor. O Cursor Chat primeiro analisa seu código localmente, calculando consultas relevantes, e depois acessa a base de código indexada para fornecer respostas mais precisas e contextualizadas.
 
 <Frame>
   <img src="/images/chat/no-embeddings.png" />
 </Frame>
 
 ### Pesquisa de Embeddings
+Com o código totalmente indexado, o Cursor Chat gera respostas altamente precisas e contextualizadas baseadas em sua base de código completa.
 
-Com a [indexação da base de código](/context/codebase-indexing), o Cursor Chat pode gerar respostas precisas com base na sua base de código.
+O Cursor analisa inteligentemente sua base de código indexada para identificar trechos relevantes ao seu contexto atual. Para direcionar especificamente a busca na base de código, basta incluir `@codebase` em seu prompt.
 
-Ao pressionar `Ctrl/⌘ + Enter` após digitar uma mensagem, o Cursor Chat examina sua base de código indexada para encontrar trechos de código relevantes. Isso é geralmente
-bom para incluir rapidamente trechos de código no contexto da conversa. Para mais controle sobre a pesquisa na base de código e melhor precisão,
-você pode usar `@codebase`.
+Para gerenciar a indexação da base de código:
+1. Abra as configurações do Cursor com `⌘ + Shift + P`
+2. Navegue até "Features"
+3. Localize "Codebase Indexing"
+4. Clique em "Show Settings"
+5. Ative ou desative conforme sua necessidade
 
 <Frame>
   <img src="/images/chat/embeddings.png" />
@@ -25,6 +28,4 @@ você pode usar `@codebase`.
 
 ### Pesquisa Avançada na Base de Código
 
-O chat de base de código do Cursor realiza uma pesquisa mais detalhada quando `@Codebase` é usado.
-
-Veja mais sobre `@Codebase` [aqui](/context/@-symbols/@-codebase).
+Veja mais sobre `@Codebase` [aqui](/04_context/@-symbols/@-codebase.mdx).
