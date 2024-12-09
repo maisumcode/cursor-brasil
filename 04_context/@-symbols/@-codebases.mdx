@@ -1,0 +1,43 @@
+---
+title: "@Codebase"
+---
+
+### `@Codebase`
+
+O recurso `@Codebase` permite que você referencie sua base de código completa como contexto para a IA. Isso é especialmente útil quando você precisa que a IA considere o contexto mais amplo do seu projeto.
+
+<Frame>
+  <img src="/images/chat/@codebase.png" />
+</Frame>
+
+## Como Funciona
+
+O Cursor segue um processo estruturado para analisar e utilizar sua base de código:
+
+1. **Coleta**: Escaneia sua base de código em busca de arquivos relevantes
+2. **Reclassificação**: Reordena os itens de contexto com base na relevância para sua consulta
+3. **Raciocínio**: Desenvolve um plano de uso do contexto
+4. **Geração**: Cria uma resposta contextualizada
+
+### Personalização do Contexto
+
+Ao usar `@Codebase`, você tem controle sobre quais partes da base de código serão incluídas:
+
+<Frame>
+  <img src="/images/chat/codebase-dropdown.png" />
+</Frame>
+
+### Exemplos de Uso
+
+- **Análise de Projeto**: Use `@Codebase` para obter uma visão geral do seu projeto
+- **Refatoração**: Inclua toda a base de código ao planejar refatorações maiores
+- **Documentação**: Gere documentação considerando o contexto completo do projeto
+
+### Dicas de Uso
+
+- Pressione `⌘ + enter` para utilizar o contexto indexado
+- Use em conjunto com outros símbolos @ para um contexto mais específico
+- Configure arquivos a serem ignorados através do `.cursorignore`
+
+### Integração com Outros Recursos
+
